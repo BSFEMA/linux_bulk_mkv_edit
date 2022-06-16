@@ -46,6 +46,9 @@ BSFEMA
 ## Started:
 2022-05-14
 
+## Screenshot:
+![screenshot](https://raw.githubusercontent.com/BSFEMA/linux_bulk_mkv_edit/master/screenshot/screenshot.png)
+
 ## Prerequisites:
 You need to have MKVToolNix installed:  https://mkvtoolnix.download/downloads.html  Try running "mkvmerge --version" in terminal.  If that works, then you are good to go, otherwise install MKVToolNix
 
