@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Application:  linux_bulk_mkv_edit.py
+Version:  1.1
 Author:  BSFEMA
 Started:  2022-05-14
 Prerequisites:  You need to have MKVToolNix installed:  https://mkvtoolnix.download/downloads.html
@@ -69,6 +70,8 @@ def populate_tree():
     global label_sl
     global entry_al
     global entry_sl
+    root.config(cursor="watch")  # Set the cursor to a 'watch' icon while everything is loading
+    root.update()
     clear_tree()  # Start with fresh grid
     get_files()  # Re-build file list
     max_file = 0
@@ -136,6 +139,7 @@ def populate_tree():
     label_sl.update()
     entry_sl.insert(END, temp)
     entry_sl.pack()
+    root.config(cursor="")  # Set cursor back to nothing now that it is done loading
     root.update()
 
 
