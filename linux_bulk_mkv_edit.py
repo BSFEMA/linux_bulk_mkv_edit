@@ -336,7 +336,7 @@ def process_files():
                 track_order = track_order + ",0:" + str(track)
             command = command + " " + "--language " + str(track) + ":" + keep_audio[track]["track_lang"]
             command = command + " " + "--track-name '" + str(track) + ":" + keep_audio[track]["track_name"] + "'"
-            if len(keep_sudio) == 1:  # If there is only 1 track, then set it as default
+            if len(keep_audio) == 1:  # If there is only 1 track, then set it as default
                 command = command + " " + "--default-track-flag " + str(track) + ":yes"
         # Subtitle Tracks
         for track in keep_subtitle:
@@ -592,3 +592,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
