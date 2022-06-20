@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Application:  linux_bulk_mkv_edit.py
-Version:  1.1
+Version:  1.2
 Author:  BSFEMA
 Started:  2022-05-14
 Prerequisites:  You need to have MKVToolNix installed:  https://mkvtoolnix.download/downloads.html
@@ -336,6 +336,8 @@ def process_files():
                 track_order = track_order + ",0:" + str(track)
             command = command + " " + "--language " + str(track) + ":" + keep_audio[track]["track_lang"]
             command = command + " " + "--track-name '" + str(track) + ":" + keep_audio[track]["track_name"] + "'"
+            if len(keep_sudio) == 1:  # If there is only 1 track, then set it as default
+                command = command + " " + "--default-track-flag " + str(track) + ":yes"
         # Subtitle Tracks
         for track in keep_subtitle:
             if len(track_order) == 0:
@@ -345,6 +347,8 @@ def process_files():
             command = command + " " + "--sub-charset " + str(track) + ":" + keep_subtitle[track]["track_encode"]
             command = command + " " + "--language " + str(track) + ":" + keep_subtitle[track]["track_lang"]
             command = command + " " + "--track-name '" + str(track) + ":" + keep_subtitle[track]["track_name"] + "'"
+            if len(keep_subtitle) == 1:  # If there is only 1 track, then set it as default
+                command = command + " " + "--default-track-flag " + str(track) + ":yes"
         command = command + " " + "'(' '" + orig_filename + "' ')' --title \"\" --track-order " + str(track_order)
         command_lines[file] = command
         # print(str(command))
