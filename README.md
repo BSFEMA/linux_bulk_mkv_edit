@@ -3,7 +3,12 @@
 ## Purpose:
 I couldn't find a good tool for bulk editing (e.g. removing) of audio and subtitle tracks in mkv files on **Linux**, so I decided to make my own.  This currently only includes tracks with languages that you choose or parts of the track names you choose.  This will not perform the conversion directly, but will spit out the command lines necessary to do the conversions.  Simply copy the command lines into a terminal and away it goes.
 
-Currently, this uses TkInter for the GUI.   If there is any interest in this, I may convert it to a better looking GTK GUI, which would make it easier to add more features.
+## Versions (TkInter and GTK):
+
+* v1.0-1.2
+  * This was the original TkInter version.  I've renamed the original "linux_bulk_mkv_edit.py" to "linux_bulk_mkv_edit_tkinter.py".  I'm keeping the TkInter version in the project in case anyone likes it, but I will not be maintaining it anymore.
+* v2.0+
+  * This is a new GTK+Glade version.  This will allow for more features to be added later.
 
 ## Functionality:
 * Point it at a folder and it will display for every .mkv file in that folder the following:
@@ -38,6 +43,7 @@ Currently, this uses TkInter for the GUI.   If there is any interest in this, I 
 * Next, click the Process Files button to get the command line output to perform the conversion.
   * Paste the output into a terminal and the files will be converted.
 * Note:  This will always set the MKV title to blank, which is my preference as I prefer my video player to just display the filename.
+* Note:  If there is only one audio/subtitle track, it will be set as a default/forces track. 
 * HINT:  I recommend my own [Linux File Rename Utility](https://github.com/BSFEMA/linux_file_rename_utility) for bulk renaming of files in Linux! 
 
 ## Author:
