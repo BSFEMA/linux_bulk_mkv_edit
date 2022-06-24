@@ -355,11 +355,12 @@ class Main():
                             temp_audio[track] = keep_audio[track]
                     keep_audio = temp_audio
                 # Audio IDs
-                temp_audio = {}
-                for track in keep_audio:
-                    if str(track) in ai:
-                        temp_audio[track] = files_Full[i][9][track]
-                keep_audio = temp_audio
+                if len(ai) > 0:
+                    temp_audio = {}
+                    for track in keep_audio:
+                        if str(track) in ai:
+                            temp_audio[track] = files_Full[i][9][track]
+                    keep_audio = temp_audio
                 # Subtitle Languages
                 temp_subtitle = {}
                 for track in files_Full[i][10]:
@@ -381,11 +382,12 @@ class Main():
                             temp_subtitle[track] = keep_subtitle[track]
                     keep_subtitle = temp_subtitle
                 # Subtitle IDs
-                temp_subtitle = {}
-                for track in keep_subtitle:
-                    if str(track) in si:
-                        temp_subtitle[track] = files_Full[i][10][track]
-                keep_subtitle = temp_subtitle
+                if len(si) > 0:
+                    temp_subtitle = {}
+                    for track in keep_subtitle:
+                        if str(track) in si:
+                            temp_subtitle[track] = files_Full[i][10][track]
+                    keep_subtitle = temp_subtitle
                 ################################################################################
                 # Build the track options based on the remaining tracks
                 """
