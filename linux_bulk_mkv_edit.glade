@@ -510,6 +510,72 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkBox" id="box_IDs">
+                    <property name="name">box_IDs</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkLabel" id="label_IDs_Audio">
+                        <property name="name">label_IDs_Audio</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">4. Keep Audio Track IDs ():</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_IDs_Audio">
+                        <property name="name">entry_IDs_Audio</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Keep only Audio Tracks with the following IDs
+Note:  Blank/No value in this field means all tracks will be included</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label_IDs_Subtitles">
+                        <property name="name">label_IDs_Subtitles</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">  Keep Subtitle Track IDs ():</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="entry_IDs_Subtitles">
+                        <property name="name">entry_IDs_Subtitles</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Keep only Subtitle Tracks with the following IDs
+Note:  Blank/No value in this field means all tracks will be included</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkBox" id="box_Title">
                     <property name="name">box_Title</property>
                     <property name="visible">True</property>
@@ -519,7 +585,7 @@
                         <property name="name">label_Title_Keep</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">4. Keep Video Title?  </property>
+                        <property name="label" translatable="yes">5. Keep Video Title?  </property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -552,7 +618,7 @@
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                   </packing>
                 </child>
               </object>

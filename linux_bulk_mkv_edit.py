@@ -37,8 +37,10 @@ files = []  # Holds only the file information for displaying in the data grid
 konami_code = []  # Easter Egg to see if the Konami code has been entered in the About dialog.
 languages_audio = []  # Holds the unique audio languages
 types_audio = []  # Holds the unique audio types (codex)
+ids_audio = []  # Holds the unique audio IDs
 languages_subtitle = []  # Holds the unique subtitle languages
-types_subtitle = []  # Holds the unique audio types (codex)
+types_subtitle = []  # Holds the unique subtitle types (codex)
+ids_subtitle = []  # Holds the unique subtitle ids
 command_lines = {}  # The full list of command lines, or the output of this application
 default_prefix_text = "_"  # Default value of the prefix text for the New File Name
 default_suffix_text = ""  # Default value of the suffix text for the New File Name
@@ -161,10 +163,14 @@ class Main():
         global languages_subtitle
         global types_audio
         global types_subtitle
+        global ids_audio
+        global ids_subtitle
         l_a = ""
         t_a = ""
         l_s = ""
         t_s = ""
+        i_a = ""
+        i_s = ""
         for element in languages_audio:
             if len(l_a) == 0:
                 l_a = element
@@ -185,15 +191,29 @@ class Main():
                 t_s = element
             else:
                 t_s = t_s + ", " + element
+        for element in ids_audio:
+            if len(i_a) == 0:
+                i_a = element
+            else:
+                i_a = i_a + ", " + element
+        for element in ids_subtitle:
+            if len(i_s) == 0:
+                i_s = element
+            else:
+                i_s = i_s + ", " + element
         # Update the GUI with the languages and types
         label_Audio_Languages = self.builder.get_object("label_Audio_Languages")
         label_Audio_Types = self.builder.get_object("label_Audio_Types")
         label_Subtitles_Languages = self.builder.get_object("label_Subtitles_Languages")
         label_Subtitles_Types = self.builder.get_object("label_Subtitles_Types")
+        label_IDs_Audio = self.builder.get_object("label_IDs_Audio")
+        label_IDs_Subtitles = self.builder.get_object("label_IDs_Subtitles")
         label_Audio_Languages.set_text("  Languages (" + str(l_a) + "):")
         label_Audio_Types.set_text("  Types (" + str(t_a) + "):")
         label_Subtitles_Languages.set_text("  Languages (" + str(l_s) + "):")
         label_Subtitles_Types.set_text("  Types (" + str(t_s) + "):")
+        label_IDs_Audio.set_text("4. Keep Audio Track IDs (" + str(i_a) + "):")
+        label_IDs_Subtitles.set_text("  Keep Subtitle Track IDs (" + str(i_s) + "):")
         entry_Audio_Languages = self.builder.get_object("entry_Audio_Languages")
         entry_Subtitles_Languages = self.builder.get_object("entry_Subtitles_Languages")
         entry_Audio_Languages.set_text(str(l_a))
@@ -213,6 +233,8 @@ class Main():
         entry_Subtitles_Languages = self.builder.get_object("entry_Subtitles_Languages")
         entry_Subtitles_Name = self.builder.get_object("entry_Subtitles_Name")
         entry_Subtitles_Types = self.builder.get_object("entry_Subtitles_Types")
+        entry_IDs_Audio = self.builder.get_object("entry_IDs_Audio")
+        entry_IDs_Subtitles = self.builder.get_object("entry_IDs_Subtitles")
         command_lines.clear()
         command_lines = {}
         ################################################################################
@@ -238,6 +260,19 @@ class Main():
         at = ""
         if len(entry_Audio_Types.get_text()) != 0:
             at = entry_Audio_Types.get_text().strip()
+        # Audio IDs
+        ai = ""
+        if len(entry_IDs_Audio.get_text()) != 0:
+            if ',' in entry_IDs_Audio.get_text():
+                ai = entry_IDs_Audio.get_text().split(',')
+                count = 0
+                for id in ai:
+                    id = id.strip()
+                    if len(id) == 0:
+                        ai.pop(count)
+                    count = count + 1
+            else:
+                ai = entry_IDs_Audio.get_text()
         # Subtitle Languages
         sl = ""
         if len(entry_Subtitles_Languages.get_text()) != 0:
@@ -259,6 +294,19 @@ class Main():
         st = ""
         if len(entry_Subtitles_Types.get_text()) != 0:
             st = entry_Subtitles_Types.get_text().strip()
+        # Subtitle IDs
+        si = ""
+        if len(entry_IDs_Subtitles.get_text()) != 0:
+            if ',' in entry_IDs_Subtitles.get_text():
+                si = entry_IDs_Subtitles.get_text().split(',')
+                count = 0
+                for id in si:
+                    id = id.strip()
+                    if len(id) == 0:
+                        si.pop(count)
+                    count = count + 1
+            else:
+                si = entry_IDs_Subtitles.get_text()
         ################################################################################
         # files_Full[0] = Current_Name
         # files_Full[1] = New_Name
@@ -271,8 +319,6 @@ class Main():
         # files_Full[8] = (video tracks) {}
         # files_Full[9] = (audio tracks) {}
         # files_Full[10] = (subtitle tracks) {}
-        # files_Full[11] = (audio languages) []
-        # files_Full[12] = (subtitle languages) []
         # Build parameters
         for i in range(len(files_Full)):
             if files_Full[i][6] != "OK":
@@ -308,6 +354,12 @@ class Main():
                         if str(at).upper() in keep_audio[track]["track_type"].upper():
                             temp_audio[track] = keep_audio[track]
                     keep_audio = temp_audio
+                # Audio IDs
+                temp_audio = {}
+                for track in keep_audio:
+                    if str(track) in ai:
+                        temp_audio[track] = files_Full[i][9][track]
+                keep_audio = temp_audio
                 # Subtitle Languages
                 temp_subtitle = {}
                 for track in files_Full[i][10]:
@@ -328,6 +380,12 @@ class Main():
                         if str(st).upper() in keep_subtitle[track]["track_type"].upper():
                             temp_subtitle[track] = keep_subtitle[track]
                     keep_subtitle = temp_subtitle
+                # Subtitle IDs
+                temp_subtitle = {}
+                for track in keep_subtitle:
+                    if str(track) in si:
+                        temp_subtitle[track] = files_Full[i][10][track]
+                keep_subtitle = temp_subtitle
                 ################################################################################
                 # Build the track options based on the remaining tracks
                 """
@@ -493,7 +551,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.0")
+        about.set_version("Version 2.1")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
@@ -601,8 +659,6 @@ class Main():
         # files_Full[8] = (video tracks) {}
         # files_Full[9] = (audio tracks) {}
         # files_Full[10] = (subtitle tracks) {}
-        # files_Full[11] = (audio languages) []
-        # files_Full[12] = (subtitle languages) []
         global files
         files.clear()
         liststore_Data_Grid = self.builder.get_object("liststore_Data_Grid")
@@ -676,6 +732,8 @@ def populate_files_Full():
         part8 = {}
         part9 = {}
         part10 = {}
+        part11 = []
+        part12 = []
         files_Full.append([part0, part1, part2, part3, part4, part5, part6, part7, part8, part9, part10])
         parse_json_data()  # Get the track information
 
@@ -686,10 +744,15 @@ def parse_json_data():
     global languages_subtitle
     global types_audio
     global types_subtitle
+    global ids_audio
+    global ids_subtitle
+    # Clear the lists
     languages_audio.clear()
     languages_subtitle.clear()
     types_audio.clear()
     types_subtitle.clear()
+    ids_audio.clear()
+    ids_subtitle.clear()
     # Parse the json data to get the individual tracks for the various types
     for i in range(len(files_Full)):
         if not (files_Full[i][7].get("tracks") is None):
@@ -698,6 +761,12 @@ def parse_json_data():
                 # track_type = track["properties"]["codec_id"]
                 track_type = track["codec"]
                 track_id = track["id"]
+                if track["type"] == "audio":  # Populate the track IDs for the audio tracks
+                    if str(track_id) not in ids_audio:
+                        ids_audio.append(str(track_id ))
+                if track["type"] == "subtitles":  # Populate the track IDs for the subtitle tracks
+                    if str(track_id) not in ids_subtitle:
+                        ids_subtitle.append(str(track_id ))
                 if "language_ietf" in track["properties"]:  # "language_ietf" isn't always a property...
                     track_lang = track["properties"]["language_ietf"]
                 elif "language" in track["properties"]:
@@ -732,11 +801,13 @@ def parse_json_data():
                     files_Full[i][10][track_id] = {"track_type": track_type, "track_lang": track_lang, "track_name": track_name, "track_encode": track_encode}
                 else:
                     print("Unknown track type = " + str(file))
-    # Sort lists
+    # Sort the lists
     languages_audio.sort()
     languages_subtitle.sort()
     types_audio.sort()
     types_subtitle.sort()
+    ids_audio.sort()
+    ids_subtitle.sort()
     # Parse the individual tracks to get the easy list of audio and subtitles
     for i in range(len(files_Full)):
         audio = ""

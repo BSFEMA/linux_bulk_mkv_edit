@@ -61,6 +61,11 @@ label#label_Subtitles_Name {}
 label#label_Subtitles_Types {}
 label#label_Subtitles {}
 label#label_Title_Keep {}
+box#box_IDs {}
+label#label_IDs_Audio {}
+label#label_IDs_Subtitles {}
+entry#entry_IDs_Audio {}
+entry#entry_IDs_Subtitles {}
 window#main_Window {}
 treeview#treeview_Data_Grid {}
 scrolledwindow#scrollwindow_Data_Grid {}

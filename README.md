@@ -40,6 +40,8 @@ I couldn't find a good tool for bulk editing (e.g. removing) of audio and subtit
     * If you populate this, then the resulting MKV files will only contain the subtitle tracks that have a track 'type' that contains the characters you entered.
     * Note:  This is a single string field, it does not currently support multiple values.
   * Note:  If you don't modify the default selections, the resulting files will contain all the original audio and subtitle tracks.
+* Next, choose which track IDs you want to keep.
+  * Note:  This is handy if multiple tracks are the same type and name.
 * Next, click the Process Files button to get the command line output to perform the conversion.
   * Paste the output into a terminal and the files will be converted.
 * Note:  This will always set the MKV title to blank, which is my preference as I prefer my video player to just display the filename.
