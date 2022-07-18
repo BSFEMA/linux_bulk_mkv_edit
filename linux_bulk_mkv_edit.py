@@ -443,28 +443,34 @@ class Main():
                     command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
                     command = command + " " + "--display-dimensions " + str(track) + ":" + files_Full[i][8][track]["track_disdim"]
                 # Audio tracks
-                for track in keep_audio:
-                    if len(track_order) == 0:
-                        track_order = track_order + "0:" + str(track)
-                    else:
-                        track_order = track_order + ",0:" + str(track)
-                    fixed_name = str(keep_audio[track]["track_name"]).replace("'", "'\\''")
-                    command = command + " " + "--language " + str(track) + ":" + keep_audio[track]["track_lang"]
-                    command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
-                    if len(keep_audio) == 1:  # If there is only 1 track, then set it as default
-                        command = command + " " + "--default-track-flag " + str(track) + ":yes"
+                if len(keep_audio) > 0:
+                    for track in keep_audio:
+                        if len(track_order) == 0:
+                            track_order = track_order + "0:" + str(track)
+                        else:
+                            track_order = track_order + ",0:" + str(track)
+                        fixed_name = str(keep_audio[track]["track_name"]).replace("'", "'\\''")
+                        command = command + " " + "--language " + str(track) + ":" + keep_audio[track]["track_lang"]
+                        command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
+                        if len(keep_audio) == 1:  # If there is only 1 track, then set it as default
+                            command = command + " " + "--default-track-flag " + str(track) + ":yes"
+                else:
+                    command = command + " --no-audio"
                 # Subtitle Tracks
-                for track in keep_subtitle:
-                    if len(track_order) == 0:
-                        track_order = track_order + "0:" + str(track)
-                    else:
-                        track_order = track_order + ",0:" + str(track)
-                    fixed_name = str(keep_subtitle[track]["track_name"]).replace("'", "'\\''")
-                    command = command + " " + "--sub-charset " + str(track) + ":" + keep_subtitle[track]["track_encode"]
-                    command = command + " " + "--language " + str(track) + ":" + keep_subtitle[track]["track_lang"]
-                    command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
-                    if len(keep_subtitle) == 1:  # If there is only 1 track, then set it as default
-                        command = command + " " + "--default-track-flag " + str(track) + ":yes"
+                if len(keep_subtitle) > 0:
+                    for track in keep_subtitle:
+                        if len(track_order) == 0:
+                            track_order = track_order + "0:" + str(track)
+                        else:
+                            track_order = track_order + ",0:" + str(track)
+                        fixed_name = str(keep_subtitle[track]["track_name"]).replace("'", "'\\''")
+                        command = command + " " + "--sub-charset " + str(track) + ":" + keep_subtitle[track]["track_encode"]
+                        command = command + " " + "--language " + str(track) + ":" + keep_subtitle[track]["track_lang"]
+                        command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
+                        if len(keep_subtitle) == 1:  # If there is only 1 track, then set it as default
+                            command = command + " " + "--default-track-flag " + str(track) + ":yes"
+                else:
+                    command = command + " --no-subtitles"
                 command = command + " " + "'(' '" + orig_filename + "' ')' --title \"\" --track-order " + str(track_order)
                 command_lines[files_Full[i][0]] = command
         # print(str(command_lines))
@@ -553,7 +559,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.1")
+        about.set_version("Version 2.2")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
