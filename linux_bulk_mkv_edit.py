@@ -464,7 +464,9 @@ class Main():
                         else:
                             track_order = track_order + ",0:" + str(track)
                         fixed_name = str(keep_subtitle[track]["track_name"]).replace("'", "'\\''")
-                        command = command + " " + "--sub-charset " + str(track) + ":" + keep_subtitle[track]["track_encode"]
+                        if keep_subtitle[track]["track_encode"] != "":
+                            # HDMV PGS sometimes don't have an encoding...
+                            command = command + " " + "--sub-charset " + str(track) + ":" + keep_subtitle[track]["track_encode"]
                         command = command + " " + "--language " + str(track) + ":" + keep_subtitle[track]["track_lang"]
                         command = command + " " + "--track-name '" + str(track) + ":" + fixed_name + "'"
                         if len(keep_subtitle) == 1:  # If there is only 1 track, then set it as default
@@ -559,7 +561,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.2")
+        about.set_version("Version 2.3")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
