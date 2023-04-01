@@ -38,6 +38,7 @@ button#button_About {}
 button#button_Process {}
 button#button_Refresh {}
 button#button_Reset {}
+checkbox#button_Multi {}
 combobox#combo_Title_Keep_Entry {}
 combobox#combo_Title_Keep {}
 entry#entry_Add_File_Name_Prefix {}

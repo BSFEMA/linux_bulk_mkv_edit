@@ -45,12 +45,14 @@ command_lines = {}  # The full list of command lines, or the output of this appl
 default_prefix_text = "_"  # Default value of the prefix text for the New File Name
 default_suffix_text = ""  # Default value of the suffix text for the New File Name
 output = ""  # The output of the command lines
+multi_lines = True
 
 
 class Main():
     def __init__(self):
         global default_prefix_text
         global default_suffix_text
+        global multi_lines
         # Setup Glade Gtk
         self.builder = gtk.Builder()
         self.builder.add_from_file(os.path.join(sys.path[0], "linux_bulk_mkv_edit.glade"))  # Looking where the python script is located
@@ -77,6 +79,19 @@ class Main():
         entry_Folder_path = self.builder.get_object("entry_Folder_path")
         entry_Folder_path.set_text(default_folder_path)
         # Set various objects to their defaults:
+        button_Multi = self.builder.get_object("button_Multi")
+        button_Multi.set_active(1)
+        multi_lines = button_Multi.get_active()
+        # Set the alignment of the Audio and Subtite data grid colums
+        cellrenderer_Subtitles = self.builder.get_object("cellrenderer_Subtitles")
+        cellrenderer_Audio = self.builder.get_object("cellrenderer_Audio")
+        # alignment: (X/Horizontal, Y/Vertical)  [values 0.0-1.0]
+        # (0,0) = Left, Top
+        # (0,1) = Left, Bottom
+        # (1,0) = Right, Top
+        # (1,1) = Right, Botton
+        cellrenderer_Subtitles.set_alignment(0, 0)
+        cellrenderer_Audio.set_alignment(0, 0)
         # Set the button_Process image
         button_Process = self.builder.get_object("button_Process")
         button_Process.set_always_show_image(True)
@@ -222,6 +237,13 @@ class Main():
     """ ************************************************************************************************************ """
     #  These are the various widget's signal handler functions:  UI elements that are buttons & dialogs
     """ ************************************************************************************************************ """
+
+    def button_Multi_toggled(self, widget):
+        global multi_lines
+        button_Multi = self.builder.get_object("button_Multi")
+        multi_lines = button_Multi.get_active()
+        populate_files_Full()
+        self.button_Refresh_clicked(self)
 
     def button_Process_clicked(self, widget):
         global default_folder_path
@@ -561,7 +583,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.3")
+        about.set_version("Version 2.4")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
@@ -745,7 +767,8 @@ def populate_files_Full():
         part11 = []
         part12 = []
         files_Full.append([part0, part1, part2, part3, part4, part5, part6, part7, part8, part9, part10])
-        parse_json_data()  # Get the track information
+        # Get the track information
+        parse_json_data()
 
 
 def parse_json_data():
@@ -756,6 +779,7 @@ def parse_json_data():
     global types_subtitle
     global ids_audio
     global ids_subtitle
+    global multi_lines
     # Clear the lists
     languages_audio.clear()
     languages_subtitle.clear()
@@ -819,18 +843,22 @@ def parse_json_data():
     ids_audio.sort()
     ids_subtitle.sort()
     # Parse the individual tracks to get the easy list of audio and subtitles
+    if multi_lines == True:
+        multi_lines_string = "\n"
+    else:
+        multi_lines_string =",  "
     for i in range(len(files_Full)):
         audio = ""
         for track in files_Full[i][9]:
             name = str(files_Full[i][9][track]["track_name"])
             if name == "":
                 if len(audio) > 0:
-                    audio = audio + ",  " + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " (" + str(files_Full[i][9][track]["track_type"]) + ")"
+                    audio = audio + str(multi_lines_string) + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " (" + str(files_Full[i][9][track]["track_type"]) + ")"
                 else:
                     audio = audio + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " (" + str(files_Full[i][9][track]["track_type"]) + ")"
             else:
                 if len(audio) > 0:
-                    audio = audio + ",  " + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][9][track]["track_type"]) + ")"
+                    audio = audio + str(multi_lines_string) + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][9][track]["track_type"]) + ")"
                 else:
                     audio = audio + str(track) + "-" + str(files_Full[i][9][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][9][track]["track_type"]) + ")"
         files_Full[i][4] = audio
@@ -839,12 +867,12 @@ def parse_json_data():
             name = str(files_Full[i][10][track]["track_name"])
             if name == "":
                 if len(subtitles) > 0:
-                    subtitles = subtitles + ",  " + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " (" + str(files_Full[i][10][track]["track_type"]) + ")"
+                    subtitles = subtitles + str(multi_lines_string) + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " (" + str(files_Full[i][10][track]["track_type"]) + ")"
                 else:
                     subtitles = subtitles + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " (" + str(files_Full[i][10][track]["track_type"]) + ")"
             else:
                 if len(subtitles) > 0:
-                    subtitles = subtitles + ",  " + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][10][track]["track_type"]) + ")"
+                    subtitles = subtitles + str(multi_lines_string) + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][10][track]["track_type"]) + ")"
                 else:
                     subtitles = subtitles + str(track) + "-" + str(files_Full[i][10][track]["track_lang"]) + " ('" + str(name) + "' " + str(files_Full[i][10][track]["track_type"]) + ")"
         files_Full[i][5] = subtitles

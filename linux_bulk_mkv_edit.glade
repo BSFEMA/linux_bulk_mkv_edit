@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
+<!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListStore" id="liststore_Data_Grid">
@@ -36,28 +36,25 @@
   </object>
   <object class="GtkWindow" id="main_Window">
     <property name="name">main_Window</property>
-    <property name="can_focus">False</property>
-    <property name="window_position">center</property>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
+    <property name="can-focus">False</property>
+    <property name="window-position">center</property>
     <child>
       <object class="GtkBox" id="box_Main">
         <property name="name">box_Main</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox" id="box_Folder_Selecter">
             <property name="name">box_Folder_Selecter</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkFileChooserButton" id="filechooser_Folder_Selecter">
                 <property name="name">filechooser_Folder_Selecter</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Use this Folder Selector to choose the folder (current path) for the application to use.</property>
+                <property name="can-focus">False</property>
+                <property name="tooltip-text" translatable="yes">Use this Folder Selector to choose the folder (current path) for the application to use.</property>
                 <property name="action">select-folder</property>
                 <property name="title" translatable="yes"/>
                 <signal name="file-set" handler="filechooser_Folder_Selecter_fileset" swapped="no"/>
@@ -72,8 +69,8 @@
               <object class="GtkEntry" id="entry_Folder_path">
                 <property name="name">entry_Folder_path</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="tooltip_markup" translatable="yes">The folder (current path) that the application is using.</property>
+                <property name="can-focus">True</property>
+                <property name="tooltip-markup" translatable="yes">The folder (current path) that the application is using.</property>
                 <signal name="changed" handler="entry_Folder_Path_changed" swapped="no"/>
               </object>
               <packing>
@@ -93,15 +90,15 @@
           <object class="GtkScrolledWindow" id="scrollwindow_Data_Grid">
             <property name="name">scrollwindow_Data_Grid</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="shadow_type">in</property>
+            <property name="can-focus">True</property>
+            <property name="shadow-type">in</property>
             <child>
               <object class="GtkTreeView" id="treeview_Data_Grid">
                 <property name="name">treeview_Data_Grid</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <property name="model">liststore_Data_Grid</property>
-                <property name="enable_grid_lines">both</property>
+                <property name="enable-grid-lines">both</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>
@@ -216,23 +213,23 @@
           <object class="GtkBox" id="box_Options_and_Buttons">
             <property name="name">box_Options_and_Buttons</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkBox" id="box_Options">
                 <property name="name">box_Options</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkBox" id="box_Add_File_Name">
                     <property name="name">box_Add_File_Name</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label_Add_File_Name">
                         <property name="name">label_Add_File_Name</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">1. File Name:</property>
                       </object>
                       <packing>
@@ -245,7 +242,7 @@
                       <object class="GtkLabel" id="label_Add_File_Name_Prefix">
                         <property name="name">label_Add_File_Name_Prefix</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Prefix:</property>
                       </object>
                       <packing>
@@ -258,8 +255,8 @@
                       <object class="GtkEntry" id="entry_Add_File_Name_Prefix">
                         <property name="name">entry_Add_File_Name_Prefix</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Add Prefix characters to the File Name.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Add Prefix characters to the File Name.</property>
                         <signal name="changed" handler="entry_Add_File_Name_changed" swapped="no"/>
                       </object>
                       <packing>
@@ -272,7 +269,7 @@
                       <object class="GtkLabel" id="label_Add_File_Name_Suffix">
                         <property name="name">label_Add_File_Name_Suffix</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Suffix:</property>
                       </object>
                       <packing>
@@ -285,8 +282,8 @@
                       <object class="GtkEntry" id="entry_Add_File_Name_Suffix">
                         <property name="name">entry_Add_File_Name_Suffix</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Add Suffix characters to the File Name.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Add Suffix characters to the File Name.</property>
                         <signal name="changed" handler="entry_Add_File_Name_changed" swapped="no"/>
                       </object>
                       <packing>
@@ -306,12 +303,12 @@
                   <object class="GtkBox" id="box_Audio">
                     <property name="name">box_Audio</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label_Audio">
                         <property name="name">label_Audio</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">2. Keep Audio Tracks:</property>
                       </object>
                       <packing>
@@ -324,7 +321,7 @@
                       <object class="GtkLabel" id="label_Audio_Languages">
                         <property name="name">label_Audio_Languages</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Languages ():</property>
                       </object>
                       <packing>
@@ -337,8 +334,8 @@
                       <object class="GtkEntry" id="entry_Audio_Languages">
                         <property name="name">entry_Audio_Languages</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track language is the same as what you enter (case insensitive), then it will be included.  If this field is blank, then no Track languages will be included.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track language is the same as what you enter (case insensitive), then it will be included.  If this field is blank, then no Track languages will be included.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -350,7 +347,7 @@
                       <object class="GtkLabel" id="label_Audio_Name">
                         <property name="name">label_Audio_Name</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Name:</property>
                       </object>
                       <packing>
@@ -363,8 +360,8 @@
                       <object class="GtkEntry" id="entry_Audio_Name">
                         <property name="name">entry_Audio_Name</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track name constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track names will be included.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track name constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track names will be included.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -376,7 +373,7 @@
                       <object class="GtkLabel" id="label_Audio_Types">
                         <property name="name">label_Audio_Types</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Types ():</property>
                       </object>
                       <packing>
@@ -389,8 +386,8 @@
                       <object class="GtkEntry" id="entry_Audio_Types">
                         <property name="name">entry_Audio_Types</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track type constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track types will be included.  The type doesn't need to be fully typed out.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track type constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track types will be included.  The type doesn't need to be fully typed out.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -409,12 +406,12 @@
                   <object class="GtkBox" id="box_Subtitles">
                     <property name="name">box_Subtitles</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label_Subtitles">
                         <property name="name">label_Subtitles</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">3. Keep Subtitle Tracks:</property>
                       </object>
                       <packing>
@@ -427,7 +424,7 @@
                       <object class="GtkLabel" id="label_Subtitles_Languages">
                         <property name="name">label_Subtitles_Languages</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Languages ():</property>
                       </object>
                       <packing>
@@ -440,8 +437,8 @@
                       <object class="GtkEntry" id="entry_Subtitles_Languages">
                         <property name="name">entry_Subtitles_Languages</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track language is the same as what you enter (case insensitive), then it will be included.  If this field is blank, then no Track languages will be included.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track language is the same as what you enter (case insensitive), then it will be included.  If this field is blank, then no Track languages will be included.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -453,7 +450,7 @@
                       <object class="GtkLabel" id="label_Subtitles_Name">
                         <property name="name">label_Subtitles_Name</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Name:</property>
                       </object>
                       <packing>
@@ -466,8 +463,8 @@
                       <object class="GtkEntry" id="entry_Subtitles_Name">
                         <property name="name">entry_Subtitles_Name</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track name constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track names will be included.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track name constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track names will be included.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -479,8 +476,8 @@
                       <object class="GtkLabel" id="label_Subtitles_Types">
                         <property name="name">label_Subtitles_Types</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">If the Track name constains the characters that you enter, then it will be included.  If this field is blank, then all Track names will be included.</property>
+                        <property name="can-focus">False</property>
+                        <property name="tooltip-text" translatable="yes">If the Track name constains the characters that you enter, then it will be included.  If this field is blank, then all Track names will be included.</property>
                         <property name="label" translatable="yes">  Types ():</property>
                       </object>
                       <packing>
@@ -493,8 +490,8 @@
                       <object class="GtkEntry" id="entry_Subtitles_Types">
                         <property name="name">entry_Subtitles_Types</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">If the Track type constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track types will be included.  The type doesn't need to be fully typed out.</property>
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">If the Track type constains the characters that you enter (case insensitive), then it will be included.  If this field is blank, then all Track types will be included.  The type doesn't need to be fully typed out.</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -513,12 +510,12 @@
                   <object class="GtkBox" id="box_IDs">
                     <property name="name">box_IDs</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label_IDs_Audio">
                         <property name="name">label_IDs_Audio</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">4. Keep Audio Track IDs ():</property>
                       </object>
                       <packing>
@@ -531,8 +528,8 @@
                       <object class="GtkEntry" id="entry_IDs_Audio">
                         <property name="name">entry_IDs_Audio</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Keep only Audio Tracks with the following IDs
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Keep only Audio Tracks with the following IDs
 Note:  Blank/No value in this field means all tracks will be included</property>
                       </object>
                       <packing>
@@ -545,7 +542,7 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                       <object class="GtkLabel" id="label_IDs_Subtitles">
                         <property name="name">label_IDs_Subtitles</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">  Keep Subtitle Track IDs ():</property>
                       </object>
                       <packing>
@@ -558,8 +555,8 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                       <object class="GtkEntry" id="entry_IDs_Subtitles">
                         <property name="name">entry_IDs_Subtitles</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="tooltip_text" translatable="yes">Keep only Subtitle Tracks with the following IDs
+                        <property name="can-focus">True</property>
+                        <property name="tooltip-text" translatable="yes">Keep only Subtitle Tracks with the following IDs
 Note:  Blank/No value in this field means all tracks will be included</property>
                       </object>
                       <packing>
@@ -579,12 +576,12 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                   <object class="GtkBox" id="box_Title">
                     <property name="name">box_Title</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label_Title_Keep">
                         <property name="name">label_Title_Keep</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="label" translatable="yes">5. Keep Video Title?  </property>
                       </object>
                       <packing>
@@ -597,14 +594,14 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                       <object class="GtkComboBox" id="combo_Title_Keep">
                         <property name="name">combo_Title_Keep</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="model">liststore_Title_Keep</property>
-                        <property name="has_entry">True</property>
-                        <property name="entry_text_column">0</property>
+                        <property name="has-entry">True</property>
+                        <property name="entry-text-column">0</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="combo_Title_Keep_Entry">
                             <property name="name">combo_Title_Keep_Entry</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                           </object>
                         </child>
                       </object>
@@ -632,16 +629,16 @@ Note:  Blank/No value in this field means all tracks will be included</property>
               <object class="GtkBox" id="box_Buttons">
                 <property name="name">box_Buttons</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="button_Refresh">
                     <property name="label" translatable="yes">Refresh Data Grid</property>
                     <property name="name">button_Refresh</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Refresh the data grid for the folder (current path).</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Refresh the data grid for the folder (current path).</property>
                     <signal name="clicked" handler="button_Refresh_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -655,10 +652,28 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                     <property name="label" translatable="yes">Reset Options</property>
                     <property name="name">button_Reset</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Reset options to the defaults.</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Reset options to the defaults.</property>
                     <signal name="clicked" handler="button_Reset_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkCheckButton" id="button_Multi">
+                    <property name="label" translatable="yes">Multiple lines</property>
+                    <property name="name">button_Multi</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Enable multiline support in the datagrid.</property>
+                    <property name="active">True</property>
+                    <property name="draw-indicator">True</property>
+                    <signal name="toggled" handler="button_Multi_toggled" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -671,9 +686,9 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                     <property name="label" translatable="yes">Process Files</property>
                     <property name="name">button_Process</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Perform the file process operation to create the command lines for editing the MKV files.</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Perform the file process operation to create the command lines for editing the MKV files.</property>
                     <signal name="clicked" handler="button_Process_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -687,9 +702,9 @@ Note:  Blank/No value in this field means all tracks will be included</property>
                     <property name="label" translatable="yes">About</property>
                     <property name="name">button_About</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">About this application.</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">About this application.</property>
                     <signal name="clicked" handler="button_About_clicked" swapped="no"/>
                   </object>
                   <packing>
