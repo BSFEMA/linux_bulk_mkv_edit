@@ -249,6 +249,7 @@ class Main():
         global default_folder_path
         global files_Full
         global command_lines
+        combo_Title_Keep = self.builder.get_object("combo_Title_Keep")
         entry_Audio_Languages = self.builder.get_object("entry_Audio_Languages")
         entry_Audio_Name = self.builder.get_object("entry_Audio_Name")
         entry_Audio_Types = self.builder.get_object("entry_Audio_Types")
@@ -495,7 +496,13 @@ class Main():
                             command = command + " " + "--default-track-flag " + str(track) + ":yes"
                 else:
                     command = command + " --no-subtitles"
-                command = command + " " + "'(' '" + orig_filename + "' ')' --title \"\" --track-order " + str(track_order)
+                # Keep or remove the Title
+                if combo_Title_Keep.get_active() == 1:
+                    # Remove
+                    command = command + " " + "'(' '" + orig_filename + "' ')' --title \"\" --track-order " + str(track_order)
+                else:
+                    # Keep
+                    command = command + " " + "'(' '" + orig_filename + "' ')' --track-order " + str(track_order)
                 command_lines[files_Full[i][0]] = command
         # print(str(command_lines))
         self.dialog_Results(self)
@@ -583,7 +590,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.4")
+        about.set_version("Version 2.5")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
