@@ -358,59 +358,65 @@ class Main():
                 keep_audio = {}
                 keep_subtitle = {}
                 # Audio Languages
-                temp_audio = {}
-                for track in files_Full[i][9]:
-                    if files_Full[i][9][track]["track_lang"] in str(al):
-                        temp_audio[track] = files_Full[i][9][track]
-                keep_audio = temp_audio
+                if len(al) > 0:
+                    temp_audio = {}
+                    for track in files_Full[i][9]:
+                        if str(al).upper() in files_Full[i][9][track]["track_lang"].upper():
+                            temp_audio[track] = files_Full[i][9][track]
+                    if len(temp_audio) > 0:  keep_audio.update(temp_audio)
                 # Audio Name
                 if len(an) > 0:
                     temp_audio = {}
-                    for track in keep_audio:
-                        if str(an).upper() in keep_audio[track]["track_name"].upper():
-                            temp_audio[track] = keep_audio[track]
-                    keep_audio = temp_audio
+                    for track in files_Full[i][9]:
+                        if str(an).upper() in files_Full[i][9][track]["track_name"].upper():
+                            temp_audio[track] = files_Full[i][9][track]
+                    if len(temp_audio) > 0:  keep_audio.update(temp_audio)
                 # Audio Type
                 if len(at) > 0:
                     temp_audio = {}
-                    for track in keep_audio:
-                        if str(at).upper() in keep_audio[track]["track_type"].upper():
-                            temp_audio[track] = keep_audio[track]
-                    keep_audio = temp_audio
+                    for track in files_Full[i][9]:
+                        if str(at).upper() in files_Full[i][9][track]["track_type"].upper():
+                            temp_audio[track] = files_Full[i][9][track]
+                    if len(temp_audio) > 0:  keep_audio.update(temp_audio)
                 # Audio IDs
                 if len(ai) > 0:
                     temp_audio = {}
-                    for track in keep_audio:
+                    for track in files_Full[i][9]:
                         if str(track) in ai:
                             temp_audio[track] = files_Full[i][9][track]
-                    keep_audio = temp_audio
+                    if len(temp_audio) > 0:  keep_audio.update(temp_audio)
+                # Sort Audio Tracks
+                keep_audio = dict(sorted(keep_audio.items()))
                 # Subtitle Languages
-                temp_subtitle = {}
-                for track in files_Full[i][10]:
-                    if files_Full[i][10][track]["track_lang"] in str(sl):
-                        temp_subtitle[track] = files_Full[i][10][track]
-                keep_subtitle = temp_subtitle
+                if len(sl) > 0:
+                    temp_subtitle = {}
+                    for track in files_Full[i][10]:
+                        if str(sl).upper() in files_Full[i][10][track]["track_lang"].upper():
+                            temp_subtitle[track] = files_Full[i][10][track]
+                    if len(temp_subtitle) > 0:  keep_subtitle.update(temp_subtitle)
                 # Subtitle Name
                 if len(sn) > 0:
                     temp_subtitle = {}
-                    for track in keep_subtitle:
-                        if str(sn).upper() in keep_subtitle[track]["track_name"].upper():
-                            temp_subtitle[track] = keep_subtitle[track]
-                    keep_subtitle = temp_subtitle
+                    for track in files_Full[i][10]:
+                        if str(sn).upper() in files_Full[i][10][track]["track_name"].upper():
+                            temp_subtitle[track] = files_Full[i][10][track]
+                    if len(temp_subtitle) > 0:  keep_subtitle.update(temp_subtitle)
                 # Subtitle Type
                 if len(st) > 0:
                     temp_subtitle = {}
-                    for track in keep_subtitle:
-                        if str(st).upper() in keep_subtitle[track]["track_type"].upper():
-                            temp_subtitle[track] = keep_subtitle[track]
-                    keep_subtitle = temp_subtitle
+                    for track in files_Full[i][10]:
+                        if str(st).upper() in files_Full[i][10][track]["track_type"].upper():
+                            temp_subtitle[track] = files_Full[i][10][track]
+                    if len(temp_subtitle) > 0:  keep_subtitle.update(temp_subtitle)
                 # Subtitle IDs
                 if len(si) > 0:
                     temp_subtitle = {}
-                    for track in keep_subtitle:
+                    for track in files_Full[i][10]:
                         if str(track) in si:
                             temp_subtitle[track] = files_Full[i][10][track]
-                    keep_subtitle = temp_subtitle
+                    if len(temp_subtitle) > 0:  keep_subtitle.update(temp_subtitle)
+                # Sort Subtitle Tracks
+                keep_subtitle = dict(sorted(keep_subtitle.items()))
                 ################################################################################
                 # Build the track options based on the remaining tracks
                 """
@@ -590,7 +596,7 @@ class Main():
         about = gtk.AboutDialog()
         about.connect("key-press-event", self.about_dialog_key_press)  # Easter Egg:  Check to see if Konami code has been entered
         about.set_program_name("Linux Bulk MKV Edit")
-        about.set_version("Version 2.5")
+        about.set_version("Version 2.6")
         about.set_copyright("Copyright (c) BSFEMA")
         about.set_comments("Python application using Gtk and Glade for bulk editing MKV files in Linux")
         about.set_license_type(gtk.License(7))  # License = MIT_X11
